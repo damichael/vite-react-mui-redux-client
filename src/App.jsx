@@ -16,7 +16,7 @@ export default function App() {
         return state.global;
     });
 
-    const { message } = globalState;
+    const { messages } = globalState;
     // end: redux state -----------------------------
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,9 +59,13 @@ export default function App() {
                 </Button>
             </Box>
             <Box sx={{ my: 4 }}>
-                <Typography variant="h6" component="h6" gutterBottom>
-                    {message}
-                </Typography>
+
+                {messages.map((msg, index) => (
+                    <Typography key={index} variant="h6" component="h6" gutterBottom>
+                        {msg}
+                    </Typography>
+                ))}
+
             </Box>
         </Container>
     );

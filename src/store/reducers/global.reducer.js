@@ -2,6 +2,7 @@ import * as Actions from '../actions/global.actions';
 
 const initialState = {
     message: '',
+    messages: [],
     dataLoading: false,
 };
 
@@ -26,14 +27,18 @@ const globalReducer = (state = initialState, action) => {
 
         case Actions.ENGAGE_SUCCESS: {
 
-            let msg = 'unknown';
-            if (action && action.payload && action.payload.message) {
-                msg = action.payload.message;
+            console.log('reducer.payload', action.payload)
+            let msgs = [];
+            if (action && action.payload && action.payload.messages) {
+                action.payload.messages.forEach((message) => {
+                    msgs.push(message);
+                })
             }
 
+            console.log('reducer.msgs', msgs)
             return {
                 ...state,
-                message: msg
+                messages: msgs
             };
         }
 
